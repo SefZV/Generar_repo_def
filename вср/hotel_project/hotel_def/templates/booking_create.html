@@ -1,0 +1,60 @@
+{% extends 'base.html '%}
+{% block title %}Бронирование{% endblock %}
+{% block content %}
+    <div class="justify-content-center">
+        <div class="col md-6">
+            <div class="card shadow">
+                <div class="card-header bg-success text-white">
+                    <h2 class="mb-0">Забронировать номер</h2>
+                </div>
+
+                <div class="card-body">
+                        <form action="{% url 'hotel:booking_create' %}" method="post">
+                            {% csrf_token %}
+                            <div class="mb-3">
+                                <label class="form-label">
+                                    Выберете номер:
+                                </label>
+                                <select name = "room_id" class="form-select">
+                                    {% for room in rooms %}
+                                        <option value="{{ room.id }}">Номер {{ room.number }} ({{ room.room_type }})</option>
+                                    {% endfor %}
+                                </select>
+                                <br><br>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Ваше ФИО:</label>
+                                <input type="text" name="guest_fio" required class="form-control">
+                                <br><br>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label"> Ваш паспорт </label>
+                                <input type="text" name="guest_passport" class="form-control">
+                                <br><br>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label">Дата заезда:</label>
+                                <input type="datetime-local" name="date_ind" required placeholder="Введите дату" class="form-control">
+                                <br><br>
+                            </div>
+
+                            <div class="mb-3">
+                                <label class="form-label"> Дата выезда</label>
+                                <input type="datetime-local" name="date_outd" required class="form-control">
+                                <br><br>
+                            </div>
+
+                            <button type="submit" class="btn btn-success"> Забронировать</button>
+                            <br>
+                            <br>
+                            
+                            <a href="{% url 'hotel:room_list' %}" class="btn btn-secondary" >Отмена</a>
+                        </form>
+                </div>    
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,9 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="p-5 md-4 bg-light rounded-3">
+        <h1 class="display-5 fw-hold">Добро пожаловать в нашу Гостиницу!</h1>
+        <p class="fs-4"> У нас самые лучшие номера и администарторы</p>
+        <a href="{% url 'hotel:room_list'%}" class=" btn btn-primary btn-lg">Смотреть номера</a>
+    </div>
+{% endblock %}

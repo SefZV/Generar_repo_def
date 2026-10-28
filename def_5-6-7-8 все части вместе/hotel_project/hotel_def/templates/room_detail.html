@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block content %}
+    <nav aria-label="breadcrumb">
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="{% url 'core:home'%}">Главная</a></li>
+            <li class="breadcrumb-item"><a href="{% url 'hotel:room_list' %}">Номера</a></li>
+            <li class="breadcrumb-item active">Номер {{ room.number}} </li>
+        </ol>
+    </nav>
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+                <div class="card shadow-sm">
+                        <div class="card-header bg-primary text-white">
+                            <h2 class="mb-0">Номер {{ room.number }}</h2>
+                        </div>
+
+                        <div class="card-body">
+                            <ul class="list-group list-group-flush mb-3">
+                                <li class="list-group-item">
+                                    <strong>Тип:</strong> {{ room.room_type }}
+                                </li>
+
+                                <li class="list-group-item">
+                                    <strong>Этаж:</strong> {{ room.floor }}
+                                </li>
+
+                                <li class="list-group-item">
+                                    <strong>Цена за ночь:</strong><span class="fw-bold text-success">{{room.price_per_night }}</span> руб.
+                                </li>
+                            </ul>
+                            <hr>
+
+                            <div class="d-flex justify-content-between">
+                                <a href="{% url 'hotel:room_list'%}" class="btn btn-secondary">Назад к списку</a>
+                                &nbsp;
+                                <a href="{% url 'hotel:booking_create' %}" class="btn btn-success">Забронировать</a>
+                            </div>
+                        </div>
+                </div>
+        </div>
+
+    </div>
+    
+{% endblock %}

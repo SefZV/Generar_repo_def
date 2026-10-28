@@ -1,0 +1,19 @@
+{% load hotel_tags %}
+<div class="card mt-4">
+    <div class="card-header bg-warning text-dark">
+        <h5 class="mb-0">Самые дорогие номера</h5>
+    </div>
+    <ul class="list-group list-group-flush">
+        {% for room in rooms %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                Номер {{ room.number }}
+                <span class="badge bg-primary rounded-pill">{{ room.price_per_night|add_rub }}</span>
+            </li>
+        {% empty %}
+            <li class="list-group-item">Нет номеров</li>
+        {% endfor %}
+    </ul>
+</div>
+&nbsp;
+&nbsp;
+&nbsp;

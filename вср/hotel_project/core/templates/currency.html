@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+    <h1>Курс валют</h1>
+    {% if error %}
+        <div class="alert alert-danger">{{ error }}</div>
+    {% else %}
+        <div class="alert alert-info">
+            <p>Доллар: {{ usd }} руб.</p>
+            <p>Евро: {{ eur }} руб.</p>
+            
+        </div>
+    {% endif %}
+{% endblock %}

@@ -1,0 +1,14 @@
+{% extends 'base.html'%}
+{% block content %}
+    <h1>Погода в Абакане</h1>
+    {% if error %}
+        <div class="alert alert-danger">
+            {{ error}}
+        </div>
+    {% else %}
+        <div class="alert alert-info">
+            <p><strong>Температура: </strong>{{ temp }} C</p>
+            <p><strong>На улице: </strong>{{ desc }}</p>
+        </div>
+    {% endif %}
+{% endblock %}

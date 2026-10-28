@@ -1,0 +1,59 @@
+{% extends 'base.html'%}
+{% load hotel_tags %}
+{% block content %}
+
+    <h1 class="bi list display-5 mb-4">Наши номера</h1>
+    <p class="lead">Всего номеров: {% total_rooms %}</p>
+    <div class="row">
+        {% for room in rooms %}
+            <div class="col-md-4 mb-4">
+                <div class="card h-100">
+                    <div class="card-body">
+                    <h5 class="card-title">Номер {{ room.number }}</h5>
+                    <p class="card-text text-muted">{{ room.room_type }}</p> 
+                    <p class="card-text fw-bold">{{ room.price_per_night|add_rub }} </p>
+                    <a href="{% url 'hotel:room_detail' room.pk %}" class="btn btn-primary">Подробнее</a>
+                    <br><br>
+                    <button class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#modal{{ room.pk }}">Быстрый просмотр</button>
+                    
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal fade" id="modal{{ room.pk}}" tabindex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Номер {{ room.number }}</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                        </div>
+                        <div class="modal-body">
+                            <p><strong>Тип:</strong>{{ room.room_type }}</p>
+                            <p><strong>Цена:</strong>{{ room.price_per_night }}</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Закрыть</button>
+                            <a href="{% url 'hotel:room_detail' room.pk %}">Перейти</a>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+                
+            
+        {% empty %}
+            <div class="col-12">
+                <div class="alert alert-info">Пока номеров нету</div>
+            </div>
+        {% endfor %}
+                   
+    </div>
+
+        <div class="mt-4">
+            {% show_popular_rooms 3 %}
+        </div>
+    <br>
+
+    <a href="{% url 'core:home' %}" class="btn btn-secondary">На главную</a>
+    
+{% endblock %}
